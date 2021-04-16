@@ -6,7 +6,6 @@ git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
 gem 'glimmer-dsl-swt', '~> 4.19.0.1'
 
-gem 'httparty'
 gem 'nokogiri'
 
 group :development do

@@ -8,12 +8,8 @@ class GoogleReporter
     #
     # options :title, :background_color
     # option :width, default: 320
-    # option :height, default: 240
-    option :greeting, default: 'Hello, World!'
 
     ## Use before_body block to pre-initialize variables to use in body
-    #
-    #
     before_body do
       Display.app_name    = 'Google Reporter'
       Display.app_version = VERSION
@@ -22,33 +18,12 @@ class GoogleReporter
     end
 
     ## Use after_body block to setup observers for widgets in body
-    #
     # after_body {
     #
     # }
 
-    def input(name, bind_attr, multi = false)
-      group {
-        layout_data :fill, :beginning, true, false
-        grid_layout(1, true) {
-          margin_top 0
-          margin_bottom 8
-          margin_height 0
-          margin_width 12
-        }
-        label {
-          font name: 'Inter', height: 12, style: :bold
-          text name.upcase
-        }
-        text((:multi if multi)) { |proxy|
-          layout_data(:fill, :beginning, true, false) {
-            heightHint 3 * proxy.get_line_height + 8 if multi
-          }
-          font name: 'Helvetica', height: 16
-          text bind(@state, bind_attr)
-        }
-      }
-    end
+    require_relative 'input'
+    require_relative 'save_dialog'
 
     ## Add widget content inside custom shell body
     # Top-most widget must be a shell or another custom shell
@@ -57,24 +32,54 @@ class GoogleReporter
         text 'Google Reporter'
         image File.join(APP_ROOT, 'package', 'windows', 'Google Reporter.ico') if OS.windows?
 
-        minimum_size 600, 400
-        grid_layout(3, false) {
+        minimum_size 400, 400
+        font name: 'Inter', height: 14
+        grid_layout(1, false) {
           margin_width 0
           margin_height 0
         }
 
         composite {
-          layout_data :fill, :beginning, true, true
-          input 'Websites', :sites
-          input 'Pesquisa', :query, true
+          layout_data :fill, :beginning, true, false
+
+          input 'websites', :sites
+
+          input 'pesquisa', :query, multi: true
+
+          group {
+            layout_data :fill, :fill, true, true
+            text(:center, :wrap, :read_only) {
+              layout_data :fill, :fill, true, true
+              text bind(@state, :search_text, computed_by: [:sites, :query])
+            }
+          }
+
+          composite {
+            layout_data :fill, :beginning, true, false
+            grid_layout(2, false) {
+              margin_height 0
+            }
+
+            spinner {
+              layout_data :beginning, :beginning, false, false
+              selection bind(@state, :limit)
+            }
+            button {
+              layout_data :fill, :beginning, true, false
+              text bind(@state, :submit_label, computed_by: :limit)
+              on_widget_selected {
+                save_dialog
+              }
+            }
+          }
         }
 
-        label(:separator) {
-          layout_data :center, :fill, false, true
+        label(:separator, :horizontal) {
+          layout_data :fill, :beginning, true, false
         }
 
         composite {
-          layout_data :fill, :beginning, true, true
+          layout_data :fill, :beginning, true, false
         }
       }
     }
