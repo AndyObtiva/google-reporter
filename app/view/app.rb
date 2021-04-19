@@ -69,6 +69,7 @@ class GoogleReporter
               text bind(@state, :submit_label, computed_by: :limit)
               on_widget_selected {
                 save_dialog
+                @state.run_search
               }
             }
           }
@@ -80,6 +81,14 @@ class GoogleReporter
 
         composite {
           layout_data :fill, :beginning, true, false
+
+          progress_bar {
+            layout_data :fill, :beginning, true, false
+
+            minimum 0
+            maximum bind(@state, :limit)
+            selection bind(@state, :progress, computed_by: :progress)
+          }
         }
       }
     }

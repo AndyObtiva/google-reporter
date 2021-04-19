@@ -319,37 +319,6 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="httparty (vbundled(0.18.1)) [path][gem]" type="rubylib">
-        <properties>
-          <option name="version" value="4" />
-        </properties>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/jruby/2.5.0/gems/httparty-0.18.1/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/jruby/2.5.0/gems/httparty-0.18.1/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/jruby/2.5.0/gems/httparty-0.18.1/docs" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/jruby/2.5.0/gems/httparty-0.18.1/script" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/jruby/2.5.0/gems/httparty-0.18.1/website" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/jruby/2.5.0/gems/httparty-0.18.1/examples" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/jruby/2.5.0/gems/httparty-0.18.1/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/jruby/2.5.0/gems/httparty-0.18.1/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/jruby/2.5.0/gems/httparty-0.18.1/docs" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/jruby/2.5.0/gems/httparty-0.18.1/script" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/jruby/2.5.0/gems/httparty-0.18.1/website" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/jruby/2.5.0/gems/httparty-0.18.1/examples" />
-        </SOURCES>
-        <excluded>
-          <root url="file://$MODULE_DIR$/vendor/bundle/jruby/2.5.0/gems/httparty-0.18.1/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/jruby/2.5.0/gems/httparty-0.18.1/docs" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/jruby/2.5.0/gems/httparty-0.18.1/script" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/jruby/2.5.0/gems/httparty-0.18.1/website" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/jruby/2.5.0/gems/httparty-0.18.1/examples" />
-        </excluded>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
       <library name="jruby-jars (vbundled(9.2.17.0)) [path][gem]" type="rubylib">
         <properties>
           <option name="version" value="4" />
@@ -520,47 +489,6 @@
         <excluded>
           <root url="file://$MODULE_DIR$/vendor/bundle/jruby/2.5.0/gems/method_source-1.0.0/spec" />
           <root url="file://$MODULE_DIR$/vendor/bundle/jruby/2.5.0/gems/method_source-1.0.0/.circleci" />
-        </excluded>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="mime-types (vbundled(3.3.1)) [path][gem]" type="rubylib">
-        <properties>
-          <option name="version" value="4" />
-        </properties>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/jruby/2.5.0/gems/mime-types-3.3.1/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/jruby/2.5.0/gems/mime-types-3.3.1/test" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/jruby/2.5.0/gems/mime-types-3.3.1/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/jruby/2.5.0/gems/mime-types-3.3.1/test" />
-        </SOURCES>
-        <excluded>
-          <root url="file://$MODULE_DIR$/vendor/bundle/jruby/2.5.0/gems/mime-types-3.3.1/test" />
-        </excluded>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="mime-types-data (vbundled(3.2021.0225)) [path][gem]" type="rubylib">
-        <properties>
-          <option name="version" value="4" />
-        </properties>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/jruby/2.5.0/gems/mime-types-data-3.2021.0225/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/jruby/2.5.0/gems/mime-types-data-3.2021.0225/data" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/jruby/2.5.0/gems/mime-types-data-3.2021.0225/types" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/jruby/2.5.0/gems/mime-types-data-3.2021.0225/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/jruby/2.5.0/gems/mime-types-data-3.2021.0225/data" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/jruby/2.5.0/gems/mime-types-data-3.2021.0225/types" />
-        </SOURCES>
-        <excluded>
-          <root url="file://$MODULE_DIR$/vendor/bundle/jruby/2.5.0/gems/mime-types-data-3.2021.0225/data" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/jruby/2.5.0/gems/mime-types-data-3.2021.0225/types" />
         </excluded>
       </library>
     </orderEntry>

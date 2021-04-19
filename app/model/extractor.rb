@@ -13,6 +13,16 @@ class Extractor
     end
   end
 
+  def to_hash
+    {
+      titulo:  title,
+      chamada: description,
+      url:     @page.base_uri,
+      # 'corpo':   content,
+      data: datetime
+    }
+  end
+
   def title
     select_first_valid(
       @jsonld&.dig(:headline),
