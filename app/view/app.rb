@@ -1,4 +1,4 @@
-require_relative '../model/state'
+require_relative "../model/state"
 
 class GoogleReporter
   class AppView
@@ -11,7 +11,7 @@ class GoogleReporter
 
     ## Use before_body block to pre-initialize variables to use in body
     before_body do
-      Display.app_name    = 'Google Reporter'
+      Display.app_name    = "Google Reporter"
       Display.app_version = VERSION
 
       @state = State.new
@@ -22,18 +22,18 @@ class GoogleReporter
     #
     # }
 
-    require_relative 'input'
-    require_relative 'save_dialog'
+    require_relative "input"
+    require_relative "save_dialog"
 
     ## Add widget content inside custom shell body
     # Top-most widget must be a shell or another custom shell
     body {
       shell(:no_resize) {
-        text 'Google Reporter'
-        image File.join(APP_ROOT, 'package', 'windows', 'Google Reporter.ico') if OS.windows?
+        text "Google Reporter"
+        image File.join(APP_ROOT, "package", "windows", "Google Reporter.ico") if OS.windows?
 
         minimum_size 400, 400
-        font name: 'Inter', height: 14
+        font name: "Inter", height: 14
         grid_layout(1, false) {
           margin_width 0
           margin_height 0
@@ -42,9 +42,9 @@ class GoogleReporter
         composite {
           layout_data :fill, :beginning, true, false
 
-          input 'websites', :sites
+          input "websites", :sites
 
-          input 'pesquisa', :query, multi: true
+          input "pesquisa", :query, multi: true, search: true
 
           group {
             layout_data :fill, :fill, true, true
@@ -82,12 +82,17 @@ class GoogleReporter
         composite {
           layout_data :fill, :beginning, true, false
 
+          text(:multi, :read_only, :v_scroll, :h_scroll) { |proxy|
+            layout_data(:fill, :fill, true, true)
+
+            text bind(@state, :log_readout, computed_by: :logs)
+          }
           progress_bar {
             layout_data :fill, :beginning, true, false
 
             minimum 0
-            maximum bind(@state, :limit)
-            selection bind(@state, :progress, computed_by: :progress)
+            maximum bind(@state, :progress_max, computed_by: :limit)
+            selection bind(@state, :progress)
           }
         }
       }

@@ -1,10 +1,10 @@
-require 'open-uri'
-require 'json'
-require 'nokogiri'
+require "open-uri"
+require "json"
+require "nokogiri"
 
 class Extractor
   def initialize(url)
-    @page     = URI.open(url)
+    @page = URI.open(url)
     @document = Nokogiri::HTML(@page)
     begin
       @jsonld = JSON.parse(get_xpath_text("//script[@type='application/ld+json']"), symbolize_names: true)
@@ -15,9 +15,9 @@ class Extractor
 
   def to_hash
     {
-      titulo:  title,
+      titulo: title,
       chamada: description,
-      url:     @page.base_uri,
+      url: @page.base_uri,
       # 'corpo':   content,
       data: datetime
     }
@@ -26,10 +26,10 @@ class Extractor
   def title
     select_first_valid(
       @jsonld&.dig(:headline),
-      get_xpath_attribute("//meta[@itemprop='name'][@content]", 'content'),
-      get_xpath_attribute("//meta[@itemprop='headline'][@content]", 'content'),
-      get_xpath_attribute("//meta[@name='twitter:title'][@content]", 'content'),
-      get_xpath_attribute("//meta[@property='og:title'][@content]", 'content'),
+      get_xpath_attribute("//meta[@itemprop='name'][@content]", "content"),
+      get_xpath_attribute("//meta[@itemprop='headline'][@content]", "content"),
+      get_xpath_attribute("//meta[@name='twitter:title'][@content]", "content"),
+      get_xpath_attribute("//meta[@property='og:title'][@content]", "content"),
       get_xpath_text("//title")
     )
   end
@@ -38,8 +38,8 @@ class Extractor
     select_first_valid(
       @jsonld&.dig(:author, 0, :name),
       get_xpath_text("//*[@itemprop='author']//*[@itemprop='name']"),
-      get_xpath_attribute("//meta[@itemprop='author'][@title]", 'title'),
-      get_css_text('.author .name'),
+      get_xpath_attribute("//meta[@itemprop='author'][@title]", "title"),
+      get_css_text(".author .name"),
       @jsonld&.dig(:publisher, :name)
     )
   end
@@ -47,29 +47,29 @@ class Extractor
   def datetime
     select_first_valid(
       @jsonld&.dig(:datePublished),
-      get_xpath_attribute("//meta[@itemprop='datePublished'][@content]", 'content'),
-      get_xpath_attribute("//meta[@name='DC.date.created'][@content]", 'content'),
-      get_css_text('date')
+      get_xpath_attribute("//meta[@itemprop='datePublished'][@content]", "content"),
+      get_xpath_attribute("//meta[@name='DC.date.created'][@content]", "content"),
+      get_css_text("date")
     )
   end
 
   def description
     select_first_valid(
       @jsonld&.dig(:description),
-      get_xpath_attribute("//meta[@name='abstract'][@content]", 'content'),
-      get_xpath_attribute("//meta[@name='description'][@content]", 'content'),
-      get_xpath_attribute("//meta[@itemprop='description'][@content]", 'content'),
-      get_xpath_attribute("//meta[@name='twitter:description'][@content]", 'content'),
-      get_xpath_attribute("//meta[@property='og:description'][@content]", 'content')
+      get_xpath_attribute("//meta[@name='abstract'][@content]", "content"),
+      get_xpath_attribute("//meta[@name='description'][@content]", "content"),
+      get_xpath_attribute("//meta[@itemprop='description'][@content]", "content"),
+      get_xpath_attribute("//meta[@name='twitter:description'][@content]", "content"),
+      get_xpath_attribute("//meta[@property='og:description'][@content]", "content")
     )
   end
 
   def content
     select_first_valid(
       @document.xpath("//*[@itemprop='articleBody']//*[self::p or self::div]").text,
-      get_css_text('articleBody'),
+      get_css_text("articleBody"),
       @document.xpath("//article").text
-    ).gsub(/[[:space:]]+/, ' ').strip
+    ).gsub(/[[:space:]]+/, " ").strip
   end
 
   private
