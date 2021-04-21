@@ -11,7 +11,7 @@ class GoogleReporter
 
     ## Use before_body block to pre-initialize variables to use in body
     before_body do
-      Display.app_name    = "Google Reporter"
+      Display.app_name = "Google Reporter"
       Display.app_version = VERSION
 
       @state = State.new

@@ -16,7 +16,7 @@ class Search
     @query = query
     @sites = sites
     @limit = limit
-    @path  = path
+    @path = path
   end
 
   # @param [Queue] progress Progress event queue
@@ -26,18 +26,18 @@ class Search
 
     Thread.new do
       progress.enq [:starting]
-      uri        = URI.parse("https://www.google.com.br/search")
-      uri.query  = URI.encode_www_form({ q: @query })
+      uri = URI.parse("https://www.google.com.br/search")
+      uri.query = URI.encode_www_form({q: @query})
       search_doc = Nokogiri::HTML(uri.open)
       progress.enq [:search_finished]
 
       current_limit = 0
-      results       = @sites.map do |domain|
+      results = @sites.map do |domain|
         search_doc.xpath("//a[starts-with(@href, '/url?q=https://#{domain}')]").map do |link|
           next if current_limit >= @limit
           current_limit += 1
           Thread.new do
-            url       = link["href"].match(/\/url\?q=(\S+?)&/).captures.first
+            url = link["href"].match(/\/url\?q=(\S+?)&/).captures.first
             extractor = Extractor.new url
             progress.enq [:url, url]
             extractor

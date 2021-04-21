@@ -1,13 +1,13 @@
 # frozen_string_literal: true
-require 'pry'
+
 require_relative "search"
 
 class State
   attr_accessor :sites, :query, :limit, :save_path, :progress, :logs
 
   def initialize
-    @sites = "www.em.com.br"
-    @query = '"mineradora OR mineração" + "evacuadas OR desalojadas OR removidas OR expulsas OR retiradas" + "famílias" -chuva'
+    @sites = ""
+    @query = ""
     @limit = 10
     @save_path = ""
     @progress = 0
